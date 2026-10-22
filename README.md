@@ -1,16 +1,99 @@
-# React + Vite
+# Photo Gallery Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive Photo Gallery web application built with **React, Vite, and Tailwind CSS** as part of the Celebrare Frontend React Internship assignment.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Fetches 30 photos from the Picsum Photos API
+- Responsive photo grid:
+  - 4 columns on desktop
+  - 2 columns on tablet
+  - 1 column on mobile
+- Search photos by author name
+- Real-time client-side filtering
+- Add or remove photos from favourites
+- Favourites managed using `useReducer`
+- Favourites persist across page refreshes using `localStorage`
+- Loading spinner while fetching photos
+- Error handling for failed API requests
+- Custom `useFetchPhotos` hook
+- `useCallback` for the search handler
+- `useMemo` for the filtered photo list
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- Tailwind CSS
+- JavaScript
+- Picsum Photos API
+- Browser Local Storage
 
-## Expanding the Oxlint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```text
+src/
+├── components/
+│   └── PhotoCard.jsx
+├── hooks/
+│   └── useFetchPhotos.js
+├── reducers/
+│   └── favouritesReducer.js
+├── App.jsx
+├── index.css
+└── main.jsx
+```
+
+## React Concepts Used
+
+### Custom Hook
+
+`useFetchPhotos` handles fetching the photos and manages:
+
+- Photos data
+- Loading state
+- Error state
+
+### useCallback
+
+`useCallback` is used for the search input handler to memoize the function.
+
+### useMemo
+
+`useMemo` is used to calculate the filtered list of photos based on the search text and fetched photos.
+
+### useReducer
+
+`useReducer` manages the favourites state.
+
+The reducer supports toggling a photo between favourite and non-favourite states.
+
+### Local Storage
+
+Favourites are stored in the browser's `localStorage`, allowing them to remain available after refreshing the page.
+
+## API
+
+The application uses the Picsum Photos API:
+
+```text
+https://picsum.photos/v2/list?limit=30
+```
+
+The photos are fetched once when the application loads. Searching is performed locally on the already-fetched photos.
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+```
+
+### 2. Navigate to the project
+
+```bash
+cd Celebrare_Assignment
+```
+
+### 3. Install
